@@ -10,6 +10,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.core.env.Environment;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
@@ -29,22 +30,20 @@ import java.util.Properties;
 @EnableTransactionManagement(proxyTargetClass = false)
 public class AppConfig {
 
-    @Value("${hibernate.connection.driver_class}")
-    String driverClass;
-    @Value("${hibernate.connection.url}")
-    String url;
-    @Value("${hibernate.connection.user}")
-    String user;
-    @Value("${hibernate.connection.password}")
-    String password;
+    private Environment environment;
+
+    @Autowired
+    public AppConfig(Environment environment){
+        this.environment = environment;
+    }
 
     @Bean
     public DataSource dataSource(){
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        dataSource.setDriverClassName(driverClass);
-        dataSource.setUrl(url);
-        dataSource.setUsername(user);
-        dataSource.setPassword(password);
+        dataSource.setDriverClassName(environment.getProperty("hibernate.connection.driver_class"));
+        dataSource.setUrl(environment.getProperty("hibernate.connection.url"));
+        dataSource.setUsername(environment.getProperty("hibernate.connection.user"));
+        dataSource.setPassword(environment.getProperty("hibernate.connection.password"));
         return dataSource;
     }
 
