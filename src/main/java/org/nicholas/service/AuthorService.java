@@ -13,7 +13,7 @@ public class AuthorService {
     DefaultRepository <Author, Integer> repository;
 
     @Autowired
-    public AuthorService(@Qualifier("authorRepository") DefaultRepository<Author, Integer> repository){
+    public AuthorService(@Qualifier(value = "authorRepository") DefaultRepository<Author, Integer> repository){
         this.repository = repository;
     }
 

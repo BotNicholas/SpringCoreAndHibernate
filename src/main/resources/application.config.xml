@@ -27,4 +27,38 @@
     <bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
         <property name="sessionFactory" ref="factory"/>
     </bean>
+
+<!-- Repositories-->
+    <bean id="authorRepository" class="org.nicholas.repository.RepositoryImpl">
+        <constructor-arg ref="factory"/>
+        <constructor-arg value="org.nicholas.model.Author"/>
+    </bean>
+    <bean id="bookCategoryRepository" class="org.nicholas.repository.RepositoryImpl">
+        <constructor-arg ref="factory"/>
+        <constructor-arg value="org.nicholas.model.BookCategory"/>
+    </bean>
+    <bean id="bookRepository" class="org.nicholas.repository.RepositoryImpl">
+        <constructor-arg ref="factory"/>
+        <constructor-arg value="org.nicholas.model.Book"/>
+    </bean>
+    <bean id="refContactTypeRepository" class="org.nicholas.repository.RepositoryImpl">
+        <constructor-arg ref="factory"/>
+        <constructor-arg value="org.nicholas.model.RefContactType"/>
+    </bean>
+    <bean id="contactRepository" class="org.nicholas.repository.RepositoryImpl">
+        <constructor-arg ref="factory"/>
+        <constructor-arg value="org.nicholas.model.Contact"/>
+    </bean>
+    <bean id="customerRepository" class="org.nicholas.repository.RepositoryImpl">
+        <constructor-arg ref="factory"/>
+        <constructor-arg value="org.nicholas.model.Customer"/>
+    </bean>
+    <bean id="orderRepository" class="org.nicholas.repository.RepositoryImpl">
+        <constructor-arg ref="factory"/>
+        <constructor-arg value="org.nicholas.model.Order"/>
+    </bean>
+    <bean id="orderItemRepository" class="org.nicholas.repository.RepositoryImpl">
+        <constructor-arg ref="factory"/>
+        <constructor-arg value="org.nicholas.model.OrderItem"/>
+    </bean>
 </beans>
