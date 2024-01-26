@@ -1,6 +1,7 @@
 package org.nicholas;
 
 import org.nicholas.model.*;
+import org.nicholas.repository.AuthorRepository;
 import org.nicholas.repository.RepositoryImpl;
 import org.nicholas.service.*;
 import org.springframework.context.support.ClassPathXmlApplicationContext;

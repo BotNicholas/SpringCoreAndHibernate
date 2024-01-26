@@ -7,7 +7,6 @@ import javax.persistence.Query;
 import javax.transaction.Transactional;
 import java.util.List;
 
-//This class is Generic! So we have to create bean for each Service manually (in XML)
 @Transactional
 public class RepositoryImpl<T, K extends Number> implements DefaultRepository<T, K> {
     private SessionFactory sessionFactory;

@@ -12,6 +12,7 @@ import java.util.List;
 @Component
 public class BookCategoryService {
     DefaultRepository<BookCategory, Integer> repository;
+
     @Autowired
     public BookCategoryService(@Qualifier("bookCategoryRepository") DefaultRepository<BookCategory, Integer> repository){
         this.repository = repository;
