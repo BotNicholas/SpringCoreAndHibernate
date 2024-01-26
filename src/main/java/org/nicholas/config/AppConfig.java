@@ -71,48 +71,4 @@ public class AppConfig {
         transactionManager.setSessionFactory(factory().getObject());
         return transactionManager;
     }
-
-
-
-//    Creating repositories beans
-    @Bean
-    public DefaultRepository<Author, Integer> authorRepository(){
-        RepositoryImpl<Author, Integer> repository = new RepositoryImpl<>(factory().getObject(), Author.class);
-        return repository;
-    }
-    @Bean
-    public DefaultRepository<BookCategory, Integer> bookCategoryRepository(){
-        RepositoryImpl<BookCategory, Integer> repository = new RepositoryImpl<>(factory().getObject(), BookCategory.class);
-        return repository;
-    }
-    @Bean
-    public DefaultRepository<Book, Integer> bookRepository(){
-        RepositoryImpl<Book, Integer> repository = new RepositoryImpl<>(factory().getObject(), Book.class);
-        return repository;
-    }
-    @Bean
-    public DefaultRepository<RefContactType, Integer> refContactTypeRepository(){
-        RepositoryImpl<RefContactType, Integer> repository = new RepositoryImpl<>(factory().getObject(), RefContactType.class);
-        return repository;
-    }
-    @Bean
-    public DefaultRepository<Contact, Integer> contactRepository(){
-        RepositoryImpl<Contact, Integer> repository = new RepositoryImpl<>(factory().getObject(), Contact.class);
-        return repository;
-    }
-    @Bean
-    public DefaultRepository<Customer, Integer> customerRepository(){
-        RepositoryImpl<Customer, Integer> repository = new RepositoryImpl<>(factory().getObject(), Customer.class);
-        return repository;
-    }
-    @Bean
-    public DefaultRepository<Order, Integer> orderRepository(){
-        RepositoryImpl<Order, Integer> repository = new RepositoryImpl<>(factory().getObject(), Order.class);
-        return repository;
-    }
-    @Bean
-    public DefaultRepository<OrderItem, Integer> orderItemRepository(){
-        RepositoryImpl<OrderItem, Integer> repository = new RepositoryImpl<>(factory().getObject(), OrderItem.class);
-        return repository;
-    }
 }
