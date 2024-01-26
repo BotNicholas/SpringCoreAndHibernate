@@ -3,13 +3,18 @@ package org.nicholas.service;
 import org.nicholas.model.Author;
 import org.nicholas.model.RefContactType;
 import org.nicholas.repository.DefaultRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+@Component
 public class RefContactService {
     DefaultRepository <RefContactType, Integer> repository;
 
-    public RefContactService(DefaultRepository<RefContactType, Integer> repository){
+    @Autowired
+    public RefContactService(@Qualifier("refContactTypeRepository") DefaultRepository<RefContactType, Integer> repository){
         this.repository = repository;
     }
 

@@ -2,13 +2,18 @@ package org.nicholas.service;
 
 import org.nicholas.model.Contact;
 import org.nicholas.repository.DefaultRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+@Component
 public class ContactService {
     DefaultRepository <Contact, Integer> repository;
 
-    public ContactService(DefaultRepository<Contact, Integer> repository){
+    @Autowired
+    public ContactService(@Qualifier("contactRepository") DefaultRepository<Contact, Integer> repository){
         this.repository = repository;
     }
 

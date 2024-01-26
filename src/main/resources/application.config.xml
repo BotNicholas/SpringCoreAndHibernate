@@ -6,10 +6,11 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
 
     <context:property-placeholder location="connection.properties"/>
+    <context:component-scan base-package="org.nicholas"/>
+    <tx:annotation-driven/>
 
-    <!--    Enabling auto transaction management (delegating it to Spring)-->
-    <tx:annotation-driven proxy-target-class="false"/>
 
+<!--    These beans can not be annotated with @Component, so we have to leave them here...-->
     <bean id="datasource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="${hibernate.connection.driver_class}"/>
         <property name="url" value="${hibernate.connection.url}"/>
@@ -20,12 +21,9 @@
     <bean id="factory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
         <property name="dataSource" ref="datasource"/>
         <property name="hibernateProperties" value="hibernate.properties"/>
-        <property name="packagesToScan" value="org.nicholas.model"/> <!-- для скана сущностей-->
+        <property name="packagesToScan" value="org.nicholas.model"/>
     </bean>
 
-    <!--    Configuring transaction manager-->
-    <!--    We have to create it properly, because it is Spring Core, but not boot ;-)-->
-    <!--    Also Proxies can not be created by themself. Transaction manager makes it-->
     <bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
         <property name="sessionFactory" ref="factory"/>
     </bean>
@@ -62,31 +60,5 @@
     <bean id="orderItemRepository" class="org.nicholas.repository.RepositoryImpl">
         <constructor-arg ref="factory"/>
         <constructor-arg value="org.nicholas.model.OrderItem"/>
-    </bean>
-
-<!-- Services-->
-    <bean id="authorService" class="org.nicholas.service.AuthorService">
-        <constructor-arg ref="authorRepository"/>
-    </bean>
-    <bean id="bookCategoryService" class="org.nicholas.service.BookCategoryService">
-        <constructor-arg ref="bookCategoryRepository"/>
-    </bean>
-    <bean id="bookService" class="org.nicholas.service.BookService">
-        <constructor-arg ref="bookRepository"/>
-    </bean>
-    <bean id="refContactService" class="org.nicholas.service.RefContactService">
-        <constructor-arg ref="refContactTypeRepository"/>
-    </bean>
-    <bean id="contactService" class="org.nicholas.service.ContactService">
-        <constructor-arg ref="contactRepository"/>
-    </bean>
-    <bean id="customerService" class="org.nicholas.service.CustomerService">
-        <constructor-arg ref="customerRepository"/>
-    </bean>
-    <bean id="orderService" class="org.nicholas.service.OrderService">
-        <constructor-arg ref="orderRepository"/>
-    </bean>
-    <bean id="orderItemService" class="org.nicholas.service.OrderItemService">
-        <constructor-arg ref="orderItemRepository"/>
     </bean>
 </beans>

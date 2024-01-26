@@ -3,13 +3,17 @@ package org.nicholas.service;
 import org.nicholas.model.Author;
 import org.nicholas.model.BookCategory;
 import org.nicholas.repository.DefaultRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+@Component
 public class BookCategoryService {
     DefaultRepository<BookCategory, Integer> repository;
-
-    public BookCategoryService(DefaultRepository<BookCategory, Integer> repository){
+    @Autowired
+    public BookCategoryService(@Qualifier("bookCategoryRepository") DefaultRepository<BookCategory, Integer> repository){
         this.repository = repository;
     }
 

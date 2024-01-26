@@ -2,13 +2,18 @@ package org.nicholas.service;
 
 import org.nicholas.model.OrderItem;
 import org.nicholas.repository.DefaultRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+@Component
 public class OrderItemService {
     DefaultRepository <OrderItem, Integer> repository;
 
-    public OrderItemService(DefaultRepository<OrderItem, Integer> repository){
+    @Autowired
+    public OrderItemService(@Qualifier("orderItemRepository") DefaultRepository<OrderItem, Integer> repository){
         this.repository = repository;
     }
 

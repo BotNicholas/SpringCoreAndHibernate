@@ -2,13 +2,18 @@ package org.nicholas.service;
 
 import org.nicholas.model.Customer;
 import org.nicholas.repository.DefaultRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+@Component
 public class CustomerService {
     DefaultRepository <Customer, Integer> repository;
 
-    public CustomerService(DefaultRepository<Customer, Integer> repository){
+    @Autowired
+    public CustomerService(@Qualifier("customerRepository") DefaultRepository<Customer, Integer> repository){
         this.repository = repository;
     }
 
